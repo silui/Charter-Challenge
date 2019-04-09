@@ -2,13 +2,16 @@
 #include <sstream>
 using namespace std;
 
-int CIDRreturn(const string &inputarg)
+//accept CIDR IP return bit mask
+//return -1 if netmask is invalid 
+int netmask_to_bits(const string &inputarg)
 {
     int returnThis = 0;
     stringstream ss(inputarg);
     string token;
     bool encouterzero = false;
     short mask = 0b10000000;
+    //interate through each clause seperated by period
     while(getline(ss,token,'.'))
     {
         short temp = stoi(token);
@@ -23,6 +26,7 @@ int CIDRreturn(const string &inputarg)
                     returnThis++;
             else
                 encouterzero = true;
+            //shift clause left 8 times to do comparason
             temp = temp<<1;
         }
     }
@@ -31,6 +35,6 @@ int CIDRreturn(const string &inputarg)
 
 int main()
 {
-    cout<<CIDRreturn("255.255.255.0")<<endl;
+    cout<<netmask_to_bits("255.255.255.128")<<endl;
     return 0;
 }
