@@ -1,12 +1,10 @@
 #include <iostream>
 #include <sstream>
-#include <vector>
 using namespace std;
 
 int CIDRreturn(const string &inputarg)
 {
     int returnThis = 0;
-    vector<string> result;
     stringstream ss(inputarg);
     string token;
     bool encouterzero = false;
